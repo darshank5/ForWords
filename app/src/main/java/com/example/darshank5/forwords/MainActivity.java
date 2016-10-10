@@ -22,12 +22,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
+
 
 import com.bumptech.glide.Glide;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
+
 import com.google.android.gms.appinvite.AppInvite;
 import com.google.android.gms.appinvite.AppInviteInvitation;
 import com.google.android.gms.auth.api.Auth;
@@ -35,10 +34,10 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.analytics.FirebaseAnalytics;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.crash.FirebaseCrash;
+
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
@@ -49,8 +48,13 @@ import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
+
+
 public class MainActivity extends AppCompatActivity
-        implements GoogleApiClient.OnConnectionFailedListener {
+        implements GoogleApiClient.OnConnectionFailedListener  {
+
+//    public TextView messageTextView1;
+
 
     public static class MessageViewHolder extends RecyclerView.ViewHolder {
         public TextView messageTextView;
@@ -90,10 +94,26 @@ public class MainActivity extends AppCompatActivity
             mFirebaseAdapter;
     private FirebaseRemoteConfig mFirebaseRemoteConfig;
 
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+//        messageTextView1 = (TextView) findViewById(R.id.messageTextView);
+//        messageTextView1.setOnClickListener(new View.OnClickListener()
+//        {
+//            @Override
+//            public void onClick(View view) {
+//                messageTextView1.setText("My text on click");
+//            }
+//        });
+
+
+
+
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         // Set default username is anonymous.
         mUsername = ANONYMOUS;
@@ -174,6 +194,7 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
+
         mMessageRecyclerView.setLayoutManager(mLinearLayoutManager);
         mMessageRecyclerView.setAdapter(mFirebaseAdapter);
 
@@ -198,6 +219,8 @@ public class MainActivity extends AppCompatActivity
             public void afterTextChanged(Editable editable) {
             }
         });
+
+
 
         mSendButton = (Button) findViewById(R.id.sendButton);
         mSendButton.setOnClickListener(new View.OnClickListener() {
